@@ -28,7 +28,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
     return (
         <UICard className='w-65 h-90 md:w-75 md:h-115
-         shadow-violet-500'>
+         shadow-violet-500 hover:scale-107 transition duration-150 ease-in-out'>
             <CardHeader>
                 <Image className='rounded-lg ' src={imageUrl} alt={imageUrl} width={500} height={500} style={{ objectFit: "cover" }} />
             </CardHeader>
