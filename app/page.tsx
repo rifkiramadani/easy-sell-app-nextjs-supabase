@@ -70,7 +70,7 @@ export default async function Home() {
           <div className="flex flex-col ms-2 py-3 flex-wrap sm:gap-5 sm:flex-row animate__animated animate__fadeInRight">
             {topProducts ? (
               topProducts!.map(product => (
-                <Card key={product.id} {...product} imageUrl={`${process.env.SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`} /> //{...product} => spreading semua value yang ada di array ke component card
+                <Card key={product.id} {...product} imageUrl={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`} /> //{...product} => spreading semua value yang ada di array ke component card
               ))
 
             ) : (
@@ -86,7 +86,7 @@ export default async function Home() {
             {products ? (
 
               products!.map(product => (
-                <Card key={product.id} {...product} imageUrl={`${process.env.SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`} /> //{...product} => spreading semua value yang ada di array ke component card
+                <Card key={product.id} {...product} imageUrl={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`} /> //{...product} => spreading semua value yang ada di array ke component card
               ))
             ) : (
               <span className="text-5xl py-7 font-semibold bg-linear-to-bl from-red-500 to-orange-300 text-transparent bg-clip-text text-center">Our Products Has Gone</span>

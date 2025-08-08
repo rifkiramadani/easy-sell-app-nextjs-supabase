@@ -35,10 +35,10 @@ const AddProduct = () => {
                         </CardHeader>
                         <CardContent>
                             {state?.type == 'error' && (
-                                <span className='text-md font-light text-red-400'>{state.message}</span>
+                                <span className='text-md font-medium text-red-600 bg-red-200 py-3 px-6 rounded-lg'>{state.message}</span>
                             )}
                             <form action={formAction}>
-                                <div className='mb-2'>
+                                <div className='mb-2 mt-6'>
                                     <Label htmlFor='name' className='mb-2'>Name</Label>
                                     <Input id='name' type='text' name='name' />
                                     {state?.error?.name && (

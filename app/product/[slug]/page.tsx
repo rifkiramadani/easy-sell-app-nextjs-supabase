@@ -41,7 +41,7 @@ const Page = async ({ params }: Props) => {
             <div className="flex justify-between py-15 px-20 ms-5">
                 <Image
                     className='rounded-lg me-3 animate__animated animate__fadeInLeft'
-                    src={`${process.env.SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`} alt={`${process.env.SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`}
+                    src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`} alt={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`}
                     width={620}
                     height={620}
                 />

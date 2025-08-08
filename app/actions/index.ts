@@ -1,6 +1,10 @@
 "use server"
 
 import z, { success } from "zod";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
+
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
     'image/jpeg',
@@ -47,7 +51,53 @@ export const sellYourItemsAction = async (prevState: unknown, formData: FormData
         }  // ZodError instance
     }
 
-    return {
-        type: 'success'
+    const { name, price, description, imageUrl } = validationFields.data;
+
+    try {
+        // Upload a file / image
+        const fileName = `${Math.random()}-${imageUrl.name}` // ✅ pakai await
+        const supabase = createServerActionClient({ cookies });
+        const { data, error } = await supabase
+            .storage
+            .from('image')
+            .upload(fileName, imageUrl, {
+                cacheControl: '3600',
+                upsert: false
+            })
+
+        if (error) {
+            console.log(error)
+            return {
+                type: 'error',
+                message: "Database Error : Failed to upload Image"
+            }
+        }
+
+        if (data) {
+            const path = data.path;
+
+            // insert data
+            const { error: addProductError } = await supabase
+                .from('easy-sell-products')
+                .insert({ name, price, description, imageUrl: path })
+
+            if (addProductError) {
+                console.log(addProductError)
+                return {
+                    type: 'error',
+                    message: 'Database Error : Failed to add Product'
+                }
+            }
+        }
+
+    } catch (error) {
+        console.error(error)
+        return {
+            type: 'error',
+            message: "Database Error : Failed to create or adding product"
+        }
     }
+
+    revalidatePath('/');
+
 }
