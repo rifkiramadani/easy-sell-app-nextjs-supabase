@@ -1,0 +1,63 @@
+"use client"
+
+import React from 'react'
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { useActionState } from 'react'
+import { sellYourItemsAction } from '@/app/actions'
+import {
+    Card as UICard,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+
+const AddProduct = () => {
+
+    // No initial state needed for useActionState when state is void
+    const [state, formAction] = useActionState(sellYourItemsAction, undefined);
+    return (
+        <div className='container mx-auto py-15 px-45'>
+            <div className='flex justify-between items-center'>
+                <div className='w-sm'>
+                    <span className='text-6xl font-bold bg-linear-to-bl from-sky-500 to-violet-300 text-transparent bg-clip-text'>Sell Your Items</span>
+                    <p className='text-2xl mt-4'>Enter details of your items to start selling your items </p>
+                </div>
+                <div className='ms-20'>
+                    <UICard className='w-3xl h-110'>
+                        <CardHeader>
+                            <CardTitle className='text-2xl'>Add Your Items!</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <form action={formAction}>
+                                <div className='mb-2'>
+                                    <Label htmlFor='name' className='mb-2'>Name</Label>
+                                    <Input id='name' type='text' name='name' />
+                                </div>
+                                <div className='mb-2'>
+                                    <Label htmlFor='price' className='mb-2'>Price</Label>
+                                    <Input id='price' type='number' name='price' />
+                                </div>
+                                <div className='mb-2'>
+                                    <Label htmlFor='description' className='mb-2'>Description</Label>
+                                    <Input id='description' type='text' name='description' />
+                                </div>
+                                <div className='mb-3'>
+                                    <Label htmlFor='image' className='mb-2'>Image</Label>
+                                    <Input id='image' type='file' name='image' />
+                                </div>
+                                <Button type='submit' className='bg-linear-to-bl from-sky-500 to-violet-300 hover:text-white hover:scale-110'>Add+</Button>
+                            </form>
+                        </CardContent>
+                    </UICard>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default AddProduct

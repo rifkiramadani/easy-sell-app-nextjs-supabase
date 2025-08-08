@@ -16,13 +16,13 @@ const Header = () => {
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>
-                            <NavigationMenuLink className={`text-2xl text-white font-semibold ${ubuntu.className}`}> Royal Enfield Easy Sell</NavigationMenuLink>
+                            <Link href={'/'}><NavigationMenuLink className={`text-2xl text-white font-semibold ${ubuntu.className}`}> Royal Enfield Easy Sell</NavigationMenuLink></Link>
                         </NavigationMenuItem>
                     </NavigationMenuList>
                 </NavigationMenu>
                 <NavigationMenu>
                     <NavigationMenuList>
-                        <NavigationMenuLink className={`text-1xl text-white font-semibold ${ubuntu.className}`}>Add Products+</NavigationMenuLink>
+                        <Link href={'/product/addProduct'}><NavigationMenuLink className={`text-1xl text-white font-semibold ${ubuntu.className}`}>Add Products+</NavigationMenuLink></Link>
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>

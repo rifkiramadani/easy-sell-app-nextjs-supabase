@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link'
+import { Button } from "@/components/ui/button"
 import {
     Card as UICard,
     CardAction,
@@ -27,7 +29,7 @@ const Card: React.FC<CardProps> = ({
     imageUrl
 }) => {
     return (
-        <UICard className='w-65 h-90 md:w-75 md:h-115
+        <UICard className='w-65 h-95 md:w-75 md:h-127
          shadow-violet-500 hover:scale-107 transition duration-150 ease-in-out'>
             <CardHeader>
                 <Image className='rounded-lg ' src={imageUrl} alt={imageUrl} width={500} height={500} style={{ objectFit: "cover" }} />
@@ -35,7 +37,8 @@ const Card: React.FC<CardProps> = ({
             <CardContent>
                 <CardTitle className='text-2xl md:text-4xl mb-3'>{name}</CardTitle>
                 <CardDescription className='mb-3 line-clamp-2'>{description}</CardDescription>
-                <p className={`text-2xl md:text-5xl ${ubuntu.className}`}>${price}</p>
+                <p className={`text-2xl md:text-5xl mb-3 ${ubuntu.className}`}>${price}</p>
+                <Link href={`product/${id}`}><Button className='bg-linear-to-bl from-sky-500 to-violet-300 hover:text-white hover:scale-110'>Details</Button></Link>
             </CardContent>
         </UICard>
     )
