@@ -4,6 +4,7 @@ import z, { success } from "zod";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { redirect, RedirectType } from "next/navigation";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -99,5 +100,6 @@ export const sellYourItemsAction = async (prevState: unknown, formData: FormData
     }
 
     revalidatePath('/');
+    redirect('/', RedirectType.replace)
 
 }

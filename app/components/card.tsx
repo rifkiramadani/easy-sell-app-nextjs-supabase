@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card"
 import Image from 'next/image'
 import ubuntu from '../utils/fonts/ubuntu'
+import SubmitButton from './submit-button'
 
 interface CardProps {
     id: number,
@@ -38,7 +39,9 @@ const Card: React.FC<CardProps> = ({
                 <CardTitle className='text-2xl md:text-4xl mb-3'>{name}</CardTitle>
                 <CardDescription className='mb-3 line-clamp-2'>{description}</CardDescription>
                 <p className={`text-2xl md:text-5xl mb-3 ${ubuntu.className}`}>${price}</p>
-                <Link href={`product/${id}`}><Button className='bg-linear-to-bl from-sky-500 to-violet-300 hover:text-white hover:scale-110'>Details</Button></Link>
+                <Link href={`product/${id}`}><Button
+                    className='bg-linear-to-bl from-sky-500 to-violet-300 hover:text-white hover:scale-110'
+                >Details</Button></Link>
             </CardContent>
         </UICard>
     )

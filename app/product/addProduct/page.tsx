@@ -3,7 +3,6 @@
 import React from 'react'
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
 import { useActionState } from 'react'
 import { sellYourItemsAction } from '@/app/actions'
 import {
@@ -16,6 +15,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { stat } from 'fs'
+import SubmitButton from '@/app/components/submit-button'
 
 const AddProduct = () => {
 
@@ -66,7 +66,7 @@ const AddProduct = () => {
                                         <span className='text-md font-light text-red-400'>{state.error.imageUrl}</span>
                                     )}
                                 </div>
-                                <Button type='submit' className='bg-linear-to-bl from-sky-500 to-violet-300 hover:text-white hover:scale-110'>Add+</Button>
+                                <SubmitButton />
                             </form>
                         </CardContent>
                     </UICard>
