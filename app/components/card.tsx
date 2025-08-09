@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/card"
 import Image from 'next/image'
 import ubuntu from '../utils/fonts/ubuntu'
-import SubmitButton from './submit-button'
 
 interface CardProps {
     id: number,

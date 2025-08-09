@@ -10,10 +10,46 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import type { Metadata, ResolvingMetadata } from 'next'
+import { getCannonicalUrl, getImageUrl } from '@/app/utils'
 
 type Props = {
     params: { slug: string }
 }
+
+export async function generateMetadata(
+    { params }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // read route params
+    const id = await params.slug
+
+    // fetch data
+    const { data: product } = await supabase
+        .from("easy-sell-products")
+        .select()
+        .match({ id })
+        .single()
+
+    if (!product) {
+        return {
+            title: "",
+            description: ""
+        }
+    }
+
+    return {
+        title: product.name,
+        description: product.description,
+        openGraph: {
+            images: [getImageUrl(product.imageUrl)],
+        },
+        alternates: {
+            canonical: `${getCannonicalUrl()}/product/${id}`
+        }
+    }
+}
+
 
 export async function generateStaticParams() {
     const { data: products, error } = await supabase
@@ -41,7 +77,8 @@ const Page = async ({ params }: Props) => {
             <div className="flex justify-between py-15 px-20 ms-5">
                 <Image
                     className='rounded-lg me-3 animate__animated animate__fadeInLeft'
-                    src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`} alt={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/image/${product.imageUrl}`}
+                    src={getImageUrl(product.imageUrl)}
+                    alt={getImageUrl(product.imageUrl)}
                     width={620}
                     height={620}
                 />
